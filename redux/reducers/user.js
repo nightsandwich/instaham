@@ -1,8 +1,5 @@
-const initialState = {
-    currentUser: null
-}
 
-export const user = (state = initialState, action) = (
+export const user = (state = {}, action) = (
     {
         ...state,
         currentUser: action.currentUser
