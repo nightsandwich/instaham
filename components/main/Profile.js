@@ -1,6 +1,6 @@
 import React, { useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { View, StyleSheet, Text, Image, ImageBackground } from 'react-native';
+import { View, StyleSheet, Text, Image, ImageBackground, Button } from 'react-native';
 import GridImageView from 'react-native-grid-image-viewer';
 import { fetchUserPosts } from '../../redux/actions';
 
@@ -22,25 +22,36 @@ export default function Profile() {
     data = [...data]
     console.log(data)
     const ham = Array(posts.length - 1).fill(hamURL)
-    let opacity = 1;
+    let opacity = .5;
     return (
-        <View style={{justifyContent: 'center',alignItems: 'center'}}>
+      <View >
+          <Image
+              source={ {uri: 'https://i.insider.com/57800f2288e4a77c708b67ad?width=1000&format=jpeg&auto=webp'}}
+              style={{width: 600 , height: 600}} 
+          />
+          <Button />
+          <Image
+              source={ {uri: hamURL}}
+              style={{position: 'absolute', width: 600 , height: 600, opacity: `${opacity}`}} 
+          />
+      </View>
+        // <View style={{justifyContent: 'center',alignItems: 'center'}}>
 
-            <ImageBackground  source={{uri:hamURL}} style={{height: 600,width: 600}}>
+        //     <ImageBackground  source={{uri:hamURL}} style={{height: 600,width: 600}}>
 
-                    <View>
-                        <Image
-                            source={ {uri: 'https://firebasestorage.googleapis.com/v0/b/instah…=media&token=619a157e-96d8-4680-a114-9d41bb3a3331'}}
-                            style={{width: 600 , height: 600 ,alignItems: 'center',justifyContent: 'center', opacity: `${opacity}`}} 
-                            onPress={() => {opacity+=.1}}
-                        />
-                    </View>
+        //             <View>
+        //                 <Image
+        //                     source={ {uri: 'https://firebasestorage.googleapis.com/v0/b/instah…=media&token=619a157e-96d8-4680-a114-9d41bb3a3331'}}
+        //                     style={{width: 600 , height: 600 ,alignItems: 'center',justifyContent: 'center', opacity: `${opacity}`}} 
+        //                     onPress={() => {opacity+=.1}}
+        //                 />
+        //             </View>
 
-            </ImageBackground>
+        //     </ImageBackground>
 
-        </View>
+        // </View>
 
-
+//GRIDIMAGEVIEWER
         // <View style={styles.background}>
         //     <Text style={styles.headline_text}>Profile</Text>         
         //         <GridImageView data={data} />
