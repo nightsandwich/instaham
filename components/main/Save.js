@@ -4,8 +4,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { getAuth } from "firebase/auth";
 import { doc, setDoc, getFirestore, addDoc, collection, getDoc } from 'firebase/firestore';
+import { NavigationContainer } from '@react-navigation/native';
 
-export default function Save(props, {navigator}) {
+export default function Save(props) {
     const [caption, setCaption] = useState('')
     const image = props.route.params.image;
     const db = getFirestore();
@@ -42,17 +43,8 @@ export default function Save(props, {navigator}) {
                 downloadURL, caption, created: new Date()
             }) 
         }
-        savePostData();
-
-        const docRef = doc(db, "posts", 'KkuQukNiJYhy8fxUVPFTtTnsZjt20.ber1cbo5wyw');
-        const docSnap = await getDoc(docRef);
-
-        if (docSnap.exists()) {
-        console.log("Document data:", docSnap.data());
-        } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
-        }
+        await savePostData();
+        props.navigation.popToTop()
 
     }
     const changeText = (caption) => setCaption(caption)
