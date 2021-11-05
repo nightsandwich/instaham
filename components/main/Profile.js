@@ -6,11 +6,16 @@ import GridImageView from 'react-native-grid-image-viewer';
 export default function Profile() {
     const posts = useSelector(state => state.posts)
     console.log('profile posts,' ,posts)
-    const data = posts.map(post => post.downloadURL)
+    let data = posts.map(post => post.downloadURL)
+    // data = [...data, 'https://imgur.com/a/yT2LlLG']
+    data = [...data, 'https://imgur.com/a/Q2kJguG']
+    console.log(data)
+    const ham = Array(posts.length - 1).fill('ham.png')
     return (
         <View style={styles.background}>
             <Text style={styles.headline_text}>Profile</Text>         
                 <GridImageView data={data} />
+                {/* <GridImageView data={ham} /> */}
         </View>
     )
 }
