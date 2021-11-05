@@ -8,9 +8,31 @@ export default function Profile() {
     console.log('profile posts,' ,posts)
     const data = posts.map(post => post.downloadURL)
     return (
-        <View>
-            <Text>Profile</Text>         
-            <GridImageView data={data} />
+        <View style={styles.background}>
+            <Text style={styles.headline_text}>Profile</Text>         
+                <GridImageView data={data} />
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    background: {
+      backgroundColor: 'black',
+      flex: 1
+    },
+    headline_text: {
+      color: 'white',
+      fontSize: 30,
+      fontWeight: 'bold',
+      marginTop: 50,
+      marginLeft: 20
+    },
+    explore_text: {
+      marginTop: 5,
+      marginBottom: 10,
+      color: 'white',
+      marginLeft: 20,
+      fontSize: 12,
+      fontWeight: '600'
+    },
+  });
