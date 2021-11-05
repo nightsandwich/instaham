@@ -44,6 +44,7 @@ export default function Save(props) {
             }) 
         }
         await savePostData();
+        // auth.signOut();
         props.navigation.popToTop()
 
     }
