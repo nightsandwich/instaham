@@ -5,8 +5,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { fetchUser } from '../redux/actions/index'
+import { fetchUser, fetchUserPosts } from '../redux/actions/index'
 
 import FeedScreen from './main/Feed';
 import ProfileScreen from './main/Profile';
@@ -19,6 +18,7 @@ const EmptyScreen = () => {
 export class Main extends Component {
     componentDidMount(){
         this.props.fetchUser();
+        this.props.fetchUserPosts();
     }
     render() {
         // const { currentUser } = this.props;
@@ -28,6 +28,7 @@ export class Main extends Component {
         //         <View></View>
         //     )
         // } 
+        console.log('PROPS  ', this.props)
         return (
             <Tab.Navigator initialRouteName="Feed">
                 <Tab.Screen name="Feed" component={FeedScreen} 
@@ -62,8 +63,13 @@ export class Main extends Component {
     }
 }
 const mapState = state => ({
-    user: state.user
+    user: state.user,
+    posts: state.props
 })
-const mapDispatch = dispatch => bindActionCreators({ fetchUser }, dispatch)
+const mapDispatch = dispatch => ({
+    fetchUser: () => dispatch(fetchUser()),
+    fetchUserPosts: () => dispatch(fetchUserPosts())
+})
+
 
 export default connect(mapState, mapDispatch)(Main)

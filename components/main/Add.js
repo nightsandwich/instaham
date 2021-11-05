@@ -27,7 +27,6 @@ export default function Add({navigation}) {
     if(camera){
       try {
         const data = await camera.takePictureAsync(null);
-        console.log('data, ', data)
         await setImage(data.uri);
       } catch (error) {
         console.log(error)
@@ -43,7 +42,6 @@ export default function Add({navigation}) {
       quality: 1,
     });
 
-    console.log('result of pick image', result);
 
     if (!result.cancelled) {
       setImage(result.uri);
