@@ -1,8 +1,9 @@
-import React, { useEffect} from 'react'
+import React, { useEffect, useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { View, StyleSheet, Text, Image, ImageBackground, Button } from 'react-native';
 import GridImageView from 'react-native-grid-image-viewer';
 import { fetchUserPosts } from '../../redux/actions';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default function Profile() {
     const dispatch = useDispatch();
@@ -13,27 +14,36 @@ export default function Profile() {
     console.log('profile posts,' ,posts)
     let data = posts.map(post => post.downloadURL)
     const hamURL = 'https://i.postimg.cc/wMH6hyZY/ham1.jpg'
-    // const hamOver = (img) => {
-    //     return (
-            
-    //     )
-    // }
-    // data = [...data, 'https://imgur.com/a/yT2LlLG']
-    data = [...data]
-    console.log(data)
+    
+    const [opacity, setOpacity] = useState(1);
+    // data = [...data]
+    // console.log(data)
     const ham = Array(posts.length - 1).fill(hamURL)
-    let opacity = .5;
+    
+    const handleLike = () => {
+      console.log(opacity)
+      setOpacity(opacity - .1)
+    }
+
+    const HamImage = () => {
+      return (
+        <Image
+              source={ {uri: hamURL}}
+              style={{position: 'absolute', width: 600 , height: 600, opacity: `${opacity}`}} 
+          />
+      )
+    }
     return (
       <View >
           <Image
               source={ {uri: 'https://i.insider.com/57800f2288e4a77c708b67ad?width=1000&format=jpeg&auto=webp'}}
               style={{width: 600 , height: 600}} 
           />
-          <Button />
-          <Image
-              source={ {uri: hamURL}}
-              style={{position: 'absolute', width: 600 , height: 600, opacity: `${opacity}`}} 
-          />
+          <Button style={{position: 'absolute'}} onPress={handleLike}>
+            <MaterialCommunityIcons name="heart" size={26} 
+            />
+          </Button>
+          <HamImage/>
       </View>
         // <View style={{justifyContent: 'center',alignItems: 'center'}}>
 
