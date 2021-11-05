@@ -2,6 +2,7 @@ import { getAuth } from "firebase/auth";
 import { doc, getDoc, getFirestore, getDocs, collection } from "firebase/firestore"; 
 import { USER_STATE_CHANGE } from "../constants";
 import { FETCH_USER_POSTS } from "../constants";
+import { FETCH_ALL_POSTS } from "../constants";
 
 export function fetchUser(){
     return( async (dispatch) => {
@@ -16,6 +17,28 @@ export function fetchUser(){
         } else {
             console.log("Does not exist.")
         }
+    })
+}
+export function fetchAllPosts(){    
+    return( async (dispatch) => {
+        const db = getFirestore();
+        const querySnapshot = await getDocs(collection(db, `posts`));
+        let posts = [];
+        querySnapshot.forEach((doc) => {    
+            let post = doc.data();
+            // post.id = postId;
+            posts.push(post)
+        });
+console.log('fetchallposts     ', posts)
+        dispatch({ type: FETCH_ALL_POSTS, posts})
+
+        // const docRef = doc(db, 'users', auth.currentUser.uid);
+        // const snapshot = await getDoc(docRef);
+        // if (snapshot.exists()){
+        //     dispatch({type: USER_STATE_CHANGE, user: snapshot.data()})
+        // } else {
+        //     console.log("Does not exist.")
+        // }
     })
 }
 

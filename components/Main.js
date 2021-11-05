@@ -5,7 +5,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 
 import { connect } from 'react-redux';
-import { fetchUser, fetchUserPosts } from '../redux/actions/index'
+import { fetchUser, fetchUserPosts, fetchAllPosts } from '../redux/actions/index'
 
 import FeedScreen from './main/Feed';
 import ProfileScreen from './main/Profile';
@@ -19,6 +19,7 @@ export class Main extends Component {
     componentDidMount(){
         this.props.fetchUser();
         this.props.fetchUserPosts();
+        this.props.fetchAllPosts();
     }
     render() {
         // const { currentUser } = this.props;
@@ -64,11 +65,13 @@ export class Main extends Component {
 }
 const mapState = state => ({
     user: state.user,
-    posts: state.props
+    posts: state.props,
+    allPosts: state.allPosts
 })
 const mapDispatch = dispatch => ({
     fetchUser: () => dispatch(fetchUser()),
-    fetchUserPosts: () => dispatch(fetchUserPosts())
+    fetchUserPosts: () => dispatch(fetchUserPosts()),
+    fetchAllPosts: () => dispatch(fetchAllPosts())
 })
 
 
