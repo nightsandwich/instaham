@@ -10,7 +10,9 @@ export function fetchUser(){
         const docRef = doc(db, 'users', auth.currentUser.uid);
         const snapshot = await getDoc(docRef);
         if (snapshot.exists()){
-            dispatch({type: USER_STATE_CHANGE, user: snapshot.data()})
+            let user = snapshot.data();
+            user.id = auth.currentUser.uid;
+            dispatch({type: USER_STATE_CHANGE, user})
         } else {
             console.log("Does not exist.")
         }
