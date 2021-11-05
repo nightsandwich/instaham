@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
-import { user } from './user';
+import { userReducer } from './user';
+import { postsReducer } from "./posts";
 
 const Reducers = combineReducers({
-    currentUser: user
+    user: userReducer,
+    posts: postsReducer
 })
 
 export default Reducers;

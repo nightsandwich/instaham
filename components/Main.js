@@ -62,7 +62,7 @@ export class Main extends Component {
     }
 }
 const mapState = state => ({
-    currentUser: state.currentUser
+    user: state.user
 })
 const mapDispatch = dispatch => bindActionCreators({ fetchUser }, dispatch)
 

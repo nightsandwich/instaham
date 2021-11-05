@@ -32,15 +32,15 @@ export default function Save(props) {
         }
         const savePostData = async () => {
             
-            const postId = auth.currentUser.uid + Math.random().toString(36)
+            const postId = Math.random().toString(36)
             // const userCollectionRef = collection(db, "users")
-            const userPostRef = doc(collection(db, 'users'), auth.currentUser.uid, 'userPosts', postId)
+            const userPostRef = doc(collection(db, 'posts'), auth.currentUser.uid, 'userPosts', postId)
             await setDoc(userPostRef, {
                 downloadURL, caption, created: new Date()
             })
             const postRef = doc(db, 'posts', postId);
             await setDoc(postRef, {
-                downloadURL, caption, created: new Date()
+                 downloadURL, caption, created: new Date()
             }) 
         }
         await savePostData();
