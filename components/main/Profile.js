@@ -18,8 +18,6 @@ export default function Profile() {
     
     const [opacity, setOpacity] = useState(0);
     // data = [...data]
-    // console.log(data)
-    const ham = Array(posts.length - 1).fill(hamURL)
     
     const handleLike = () => {
       console.log(opacity)
@@ -36,7 +34,15 @@ export default function Profile() {
     }
     return (
       <View style={styles.background}>
-        <Text style={styles.headline_text}>Profile</Text>  
+        <Text style={styles.headline_text}>Profile
+          <Icon style={{marginLeft: '1rem'}} name="sign-out" type='font-awesome' color='white'/>
+        </Text> 
+        <Text style={styles.explore_text}>
+          Info
+        </Text> 
+        <Text style={styles.explore_text}>
+          Info
+        </Text> 
         <View>
           <Image
               source={ {uri: 'https://i.insider.com/57800f2288e4a77c708b67ad?width=1000&format=jpeg&auto=webp'}}

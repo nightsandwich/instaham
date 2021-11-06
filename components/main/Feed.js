@@ -18,9 +18,6 @@ export default function Feed() {
     return (
         <View style={styles.background}>
             <Text style={styles.headline_text}>Feed
-            <Icon name="heartbeat" type='font-awesome' color='#f50'
-              
-            />
         </Text>         
                 <GridImageView data={data} />
         </View>
