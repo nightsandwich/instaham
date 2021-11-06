@@ -14,10 +14,11 @@ export default function ImageWithHam({image}) {
       console.log(opacityPhoto)
       setOpacity(opacity + .05);
       setOpacityPhoto(opacityPhoto - .05);
-    //   if (opacityPhoto <= 0){
-//TODO: add opacityPhoto to database    
-    //     //hamify()
-    //   }
+       if (opacityPhoto <= 0){
+            //delete from user's posts
+            //edit URL in all posts to be HAM
+         //hamify()
+       }
     }
     const HamImage = () => {
         return (

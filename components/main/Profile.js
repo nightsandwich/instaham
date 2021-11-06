@@ -33,16 +33,25 @@ export default function Profile() {
           Posts: {posts.length}
         </Text> 
         <ScrollView>
-          {
-            posts.map(post => (
-              <ImageWithHam key={post.id} image={post.downloadURL}  />
-            ))
-          }
-          {/* <ImageWithHam image={image}/>
-          <ImageWithHam image={image}/> */}
-          {/* <GridImageView data={data} /> */}
+          <View
+            style={{marginTop: 10}}
+          >
+            {
+              posts.map(post => (
+                <ImageBackground
+                    source={ {uri: post.downloadURL}}
+                    style={{width: 300 , height: 300, opacity: post.opacity}} 
+                >
+                  <Text style={{fontWeight: 'bold', color: 'white', backgroundColor: 'darkslategrey', textAlign: 'center', marginTop: 150}}>
+                    {((1-post.opacity) * 100).toFixed(1)}% Ham
+                  </Text>
+                </ImageBackground>
+              ))
+            }
+          </View>
           
         </ScrollView>
+          {/* <GridImageView data={data} /> */}
       </View>
 
 //GRIDIMAGEVIEWER

@@ -17,8 +17,6 @@ export default function Feed() {
     }, [posts.length])
     console.log('all posts,' ,posts)
     
-    const data = posts.map(post => post.downloadURL)
-    
     return (
         <View style={styles.background}>
           <Text style={styles.headline_text}>Feed InstaHam 
