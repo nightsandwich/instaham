@@ -24,6 +24,8 @@ export function fetchUser(){
 export function fetchAllPosts(){    
     return( async (dispatch) => {
         const db = getFirestore();
+        const auth = getAuth();
+        const userId = auth.currentUser.uid;
         const querySnapshot = await getDocs(collection(db, `posts`));
         let posts = [];
         querySnapshot.forEach((doc) => {
@@ -35,7 +37,7 @@ export function fetchAllPosts(){
         // posts.forEach(async(post) => {
 
         // const docRef = doc(db, 'posts', post.id);
-        // await setDoc(docRef, { opacity: 1.0001 }, { merge: true });
+        // await setDoc(docRef, { userId: userId }, { merge: true });
         // console.log('added opacity')
         // })
         dispatch({ type: FETCH_ALL_POSTS, posts})
@@ -89,11 +91,14 @@ export function editOpacityPost(postId, newOpacity){
         post = post.data();
         post.id = postId;
         const userDocRef = doc(collection(db, 'posts'), userId, 'userPosts', postId);
-        await setDoc(userDocRef, { opacity: +newOpacity }, { merge: true });
-        let userPost =await getDoc(userDocRef);
-        userPost = userPost.data();
-        userPost.id = postId;
+        const query = await getDoc(userDocRef);
+        if(query.data().id){
+            await setDoc(userDocRef, { opacity: +newOpacity }, { merge: true });
+            let userPost =await getDoc(userDocRef);
+            userPost = userPost.data();
+            userPost.id = postId;
+            dispatch({ type: EDIT_OPACITY_POST_USER, userPost })
+        }
         dispatch({ type: EDIT_OPACITY_POST, post })
-        dispatch({ type: EDIT_OPACITY_POST_USER, userPost })
     })
 }

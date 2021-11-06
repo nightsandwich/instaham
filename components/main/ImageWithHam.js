@@ -7,7 +7,7 @@ import { FAB } from 'react-native-elements';
 import { Icon } from 'react-native-elements';
 import { editOpacityPost } from '../../redux/actions';
 
-export default function ImageWithHam({image, postId, postOpacity}) {
+export default function ImageWithHam({image, postId, postOpacity, caption}) {
     const dispatch = useDispatch();
     const hamURL = 'https://i.postimg.cc/3NXbCx6s/pngaaa-com-4797789.png'
     
@@ -54,7 +54,10 @@ export default function ImageWithHam({image, postId, postOpacity}) {
                 style={{width: 300 , height: 300, opacity: opacityPhoto}} 
                 
             />
-            <HamImage/>
+            {
+                image !== hamURL ? (
+                    <View>
+                    <HamImage/>
             <FAB 
                 placement='left' 
                 color='black'
@@ -65,6 +68,17 @@ export default function ImageWithHam({image, postId, postOpacity}) {
                 />
                 }
             />
+            </View>
+                ) : null
+            }
+            
+            {
+                !!caption ? 
+                <Text style={{fontWeight: 'bold', color: 'black', backgroundColor: 'lightgrey', textAlign: 'center', width: 300}} >
+                    User Caption: {caption}
+                </Text> : null
+            }
+            
         </View>
     )
 }

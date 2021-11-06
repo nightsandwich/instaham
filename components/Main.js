@@ -58,6 +58,7 @@ export class Main extends Component {
                             <MaterialCommunityIcons name="account-circle" color={color} size={26} />
                         )
                     }}
+                    navigation={this.props.navigation}
                 />
             </Tab.Navigator>
         )
@@ -72,6 +73,7 @@ const mapDispatch = dispatch => ({
     fetchUser: () => dispatch(fetchUser()),
     fetchUserPosts: () => dispatch(fetchUserPosts()),
     fetchAllPosts: () => dispatch(fetchAllPosts())
+
 })
 
 

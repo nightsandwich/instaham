@@ -19,7 +19,7 @@ export default function Feed() {
     useEffect(() => {
         dispatch(fetchAllPosts())
     }, [posts.length])
-    console.log('all posts,' ,posts)
+    // console.log('all posts,' ,posts)
     
     const Icon = createIconSetFromIcoMoon(
       icoMoonConfig,
@@ -38,7 +38,8 @@ export default function Feed() {
           <ScrollView>
             {
               posts.map(post => (
-                <ImageWithHam key={post.id} image={post.downloadURL} postId={post.id} postOpacity={post.opacity}/>
+                <ImageWithHam key={post.id} image={post.downloadURL} caption={post.caption} postId={post.id} postOpacity={post.opacity}/>
+                
               ))
             }
             {/* <ImageWithHam image={image}/>
