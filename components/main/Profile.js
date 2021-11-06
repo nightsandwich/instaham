@@ -43,7 +43,7 @@ export default function Profile() {
                     style={{width: 300 , height: 300, opacity: post.opacity}} 
                 >
                   <Text style={{fontWeight: 'bold', color: 'white', backgroundColor: 'darkslategrey', textAlign: 'center', marginTop: 150}}>
-                    {((1-post.opacity) * 100).toFixed(1)}% Ham
+                    {((1-post.opacity) * 100).toFixed(3)}% Ham
                   </Text>
                 </ImageBackground>
               ))

@@ -3,6 +3,7 @@ import { doc, getDoc, getFirestore, getDocs, collection, setDoc } from "firebase
 import { USER_STATE_CHANGE } from "../constants";
 import { FETCH_USER_POSTS } from "../constants";
 import { FETCH_ALL_POSTS } from "../constants";
+import { EDIT_OPACITY_POST } from "../constants";
 
 export function fetchUser(){
     return( async (dispatch) => {
@@ -33,10 +34,9 @@ export function fetchAllPosts(){
         // posts.forEach(async(post) => {
 
         // const docRef = doc(db, 'posts', post.id);
-        // await setDoc(docRef, { opacity: 1 }, { merge: true });
+        // await setDoc(docRef, { opacity: 1.0001 }, { merge: true });
         // console.log('added opacity')
         // })
-console.log('fetchallposts     ', posts)
         dispatch({ type: FETCH_ALL_POSTS, posts})
 
         // const docRef = doc(db, 'users', auth.currentUser.uid);
@@ -64,7 +64,6 @@ export function fetchUserPosts(){
                 posts.push(post)
             }    
         });
-console.log('fetchuserposts     ', posts)
         dispatch({ type: FETCH_USER_POSTS, posts})
 
         // const docRef = doc(db, 'users', auth.currentUser.uid);
@@ -74,5 +73,18 @@ console.log('fetchuserposts     ', posts)
         // } else {
         //     console.log("Does not exist.")
         // }
+    })
+}
+
+export function editOpacityPost(postId, newOpacity){    
+    return( async (dispatch) => {
+        const db = getFirestore();
+        const docRef = doc(db, 'posts', postId)
+        await setDoc(docRef, { opacity: +newOpacity }, { merge: true });
+        let post = await getDoc(docRef);
+    console.log('POST  ', post)
+        post = post.data();
+        post.id = postId;
+        dispatch({ type: EDIT_OPACITY_POST, post })
     })
 }

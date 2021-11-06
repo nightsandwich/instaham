@@ -27,7 +27,7 @@ export default function Feed() {
           <ScrollView>
             {
               posts.map(post => (
-                <ImageWithHam key={post.id} image={post.downloadURL}  />
+                <ImageWithHam key={post.id} image={post.downloadURL} postId={post.id} postOpacity={post.opacity}/>
               ))
             }
             {/* <ImageWithHam image={image}/>

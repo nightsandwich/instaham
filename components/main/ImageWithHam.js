@@ -1,19 +1,33 @@
 import React, {useState} from 'react'
 import { View, StyleSheet, Text, Image, ImageBackground, Button, TouchableOpacity } from 'react-native';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { FAB } from 'react-native-elements';
 import { Icon } from 'react-native-elements';
+import { editOpacityPost } from '../../redux/actions';
 
-export default function ImageWithHam({image}) {
+export default function ImageWithHam({image, postId, postOpacity}) {
+    const dispatch = useDispatch();
     const hamURL = 'https://i.postimg.cc/3NXbCx6s/pngaaa-com-4797789.png'
     
-    const [opacity, setOpacity] = useState(0);
-    const [opacityPhoto, setOpacityPhoto] = useState(1);
+    const [opacity, setOpacity] = useState(1-postOpacity);
+    const [opacityPhoto, setOpacityPhoto] = useState(postOpacity);
     
-    const handleLike = () => {
+    // const post = useSelector(state => state.allPosts.find(statePost => statePost.id === post.id));
+
+    // useEffect(()=> {
+
+    //     setOpacityPhoto(postOpacity)
+    // }, [])
+
+    const handleLike = async() => {
       console.log(opacity)
       console.log(opacityPhoto)
-      setOpacity(opacity + .05);
-      setOpacityPhoto(opacityPhoto - .05);
+    //TODO: editopacitypost
+        setOpacity(opacity + .05);
+        setOpacityPhoto(opacityPhoto - .05);
+        await dispatch(editOpacityPost(postId, opacityPhoto.toFixed(4)))
        if (opacityPhoto <= 0){
             //delete from user's posts
             //edit URL in all posts to be HAM
