@@ -4,7 +4,8 @@ import { View, StyleSheet, Text, Image, ImageBackground, Button, TouchableOpacit
 import GridImageView from 'react-native-grid-image-viewer';
 import { fetchUserPosts } from '../../redux/actions';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import { FAB } from 'react-native-elements';
+import { Icon } from 'react-native-elements';
 export default function Profile() {
     const dispatch = useDispatch();
     const posts = useSelector(state => state.posts)
@@ -36,13 +37,23 @@ export default function Profile() {
     return (
       <View style={styles.background}>
         <Text style={styles.headline_text}>Profile</Text>  
-        <TouchableOpacity onPress={handleLike}>
+        <View>
           <Image
               source={ {uri: 'https://i.insider.com/57800f2288e4a77c708b67ad?width=1000&format=jpeg&auto=webp'}}
               style={{width: 300 , height: 300}} 
           />
           <HamImage/>
-        </TouchableOpacity>
+          <FAB 
+            placement='left' 
+            color='black'
+            icon={
+              <Icon name="heart" type='font-awesome'
+                onPress={handleLike}
+                color='red'
+              />
+            }
+          />
+        </View>
       </View>
         // <View style={{justifyContent: 'center',alignItems: 'center'}}>
 

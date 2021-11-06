@@ -3,7 +3,8 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useEffect  } from 'react';
 import { fetchAllPosts } from '../../redux/actions';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, Button } from 'react-native';
+import { Icon } from 'react-native-elements';
 import GridImageView from 'react-native-grid-image-viewer';
 
 export default function Feed() {
@@ -16,7 +17,11 @@ export default function Feed() {
     const data = posts.map(post => post.downloadURL)
     return (
         <View style={styles.background}>
-            <Text style={styles.headline_text}>Feed</Text>         
+            <Text style={styles.headline_text}>Feed
+            <Icon name="heartbeat" type='font-awesome' color='#f50'
+              
+            />
+        </Text>         
                 <GridImageView data={data} />
         </View>
     )
