@@ -8,14 +8,17 @@ import ImageWithHam from './ImageWithHam';
 
 export default function Profile() {
     const dispatch = useDispatch();
-    const [posts, user] = useSelector(state => [state.posts, state.user])
+    const [posts, user] = useSelector(state => [state.posts.sort((a,b) => a.created < b.created ? 1 : -1), state.user])
     const opacityVal = posts.reduce((accum, post) => {
       accum += post.opacity;
       return accum;
     }, 0)
     useEffect(() => {
         dispatch(fetchUserPosts())
-    }, [posts.length, opacityVal])
+    }, [])
+    useEffect(() => {
+        dispatch(fetchUserPosts())
+    }, [opacityVal])
     
     const hamLevel = (opacity) => {
       return ((1.001 - +opacity) * 100).toFixed(4)

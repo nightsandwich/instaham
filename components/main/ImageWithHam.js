@@ -24,11 +24,12 @@ export default function ImageWithHam({image, postId, postOpacity}) {
     const handleLike = async() => {
       console.log(opacity)
       console.log(opacityPhoto)
-    //TODO: editopacitypost
+    
         setOpacity(opacity + .05);
         setOpacityPhoto(opacityPhoto - .05);
         await dispatch(editOpacityPost(postId, opacityPhoto.toFixed(4)))
        if (opacityPhoto <= 0){
+           
             //delete from user's posts
             //edit URL in all posts to be HAM
          //hamify()

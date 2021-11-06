@@ -3,23 +3,34 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useEffect  } from 'react';
 import { fetchAllPosts } from '../../redux/actions';
-import { View, StyleSheet, Text, ScrollView } from 'react-native';
-import { Icon } from 'react-native-elements';
-import GridImageView from 'react-native-grid-image-viewer';
+import { View, Image, StyleSheet, Text, ScrollView } from 'react-native';
 import ImageWithHam from './ImageWithHam';
+import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
+import icoMoonConfig from '../../selection.json';
+
 
 export default function Feed() {
     const dispatch = useDispatch();
-    const posts = useSelector(state => state.allPosts)
+    const posts = useSelector(state => state.allPosts.sort((a,b) => a.created < b.created ? 1 : -1))
     
+    useEffect(() => {
+        dispatch(fetchAllPosts())
+    }, [])
     useEffect(() => {
         dispatch(fetchAllPosts())
     }, [posts.length])
     console.log('all posts,' ,posts)
     
+    const Icon = createIconSetFromIcoMoon(
+      icoMoonConfig,
+      'LineAwesome',
+      'line-awesome.ttf'
+    );
+    
     return (
         <View style={styles.background}>
-          <Text style={styles.headline_text}>Feed InstaHam 
+          <Text style={styles.headline_text}>Feed InstaHam
+            <Icon /> 
           </Text>
           <Text style={styles.explore_text}>
             Total Posts: {posts.length}
