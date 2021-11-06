@@ -23,18 +23,20 @@ export default function ImageWithHam({image}) {
         return (
           <Image
                 source={ {uri: hamURL}}
-                style={{position: 'absolute', width: 300 , height: 300, opacity: `${opacity}`}} 
+                style={{position: 'absolute', width: 300 , height: 300, opacity: opacity}}
+              
             />
         )
     }
 
     return (
         <View
-            style={{marginTop: 1}}
+            style={{marginTop: 10}}
         >
             <Image
                 source={ {uri: image}}
-                style={{width: 300 , height: 300, opacity: `${opacityPhoto}`}} 
+                style={{width: 300 , height: 300, opacity: opacityPhoto}} 
+                
             />
             <HamImage/>
             <FAB 
@@ -50,3 +52,11 @@ export default function ImageWithHam({image}) {
         </View>
     )
 }
+const styles = (opacity, opacityPhoto) => StyleSheet.create({
+    ham: {
+        opacity: opacity
+    },
+    img: {
+        opacity: opacityPhoto
+    }
+})
