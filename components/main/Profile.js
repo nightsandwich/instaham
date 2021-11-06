@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { View, StyleSheet, Text, Image, ImageBackground, Button, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, ScrollView, Image, ImageBackground, Button, TouchableOpacity } from 'react-native';
 import GridImageView from 'react-native-grid-image-viewer';
 import { fetchUserPosts } from '../../redux/actions';
 import { Icon } from 'react-native-elements';
@@ -23,7 +23,7 @@ export default function Profile() {
     return (
       <View style={styles.background}>
         <Text style={styles.headline_text}>Profile
-          <Icon style={{marginLeft: '1rem'}} name="sign-out" type='font-awesome' color='white'/>
+          <Icon style={{marginLeft: 10}} name="sign-out" type='font-awesome' color='white'/>
         </Text> 
         <Text style={styles.explore_text}>
           Username: {user.name}
@@ -31,7 +31,7 @@ export default function Profile() {
         <Text style={styles.explore_text}>
           Posts: {posts.length}
         </Text> 
-        <View>
+        <ScrollView>
           {
             posts.map(post => (
               <ImageWithHam key={post.id} image={post.downloadURL}  />
@@ -41,7 +41,7 @@ export default function Profile() {
           <ImageWithHam image={image}/> */}
           {/* <GridImageView data={data} /> */}
           
-        </View>
+        </ScrollView>
       </View>
 
 //GRIDIMAGEVIEWER

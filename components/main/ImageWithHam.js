@@ -15,7 +15,7 @@ export default function ImageWithHam({image}) {
       setOpacity(opacity + .05);
       setOpacityPhoto(opacityPhoto - .05);
     //   if (opacityPhoto <= 0){
-        
+//TODO: add opacityPhoto to database    
     //     //hamify()
     //   }
     }
@@ -29,7 +29,9 @@ export default function ImageWithHam({image}) {
     }
 
     return (
-        <View>
+        <View
+            style={{marginTop: 1}}
+        >
             <Image
                 source={ {uri: image}}
                 style={{width: 300 , height: 300, opacity: `${opacityPhoto}`}} 
