@@ -9,17 +9,17 @@ import ImageWithHam from './ImageWithHam';
 export default function Profile() {
     const dispatch = useDispatch();
     const [posts, user] = useSelector(state => [state.posts, state.user])
-    
+    const opacityVal = posts.reduce((accum, post) => {
+      accum += post.opacity;
+      return accum;
+    }, 0)
     useEffect(() => {
         dispatch(fetchUserPosts())
-    }, [posts.length])
-    console.log('profile posts,' ,posts)
-    // let data = posts.map(post => post.downloadURL)
-
-    // let allImages = posts.map(post => (
-    //   ImageWithHam(post.downloadURL)
-    // ))
-    // const image = 'https://i.insider.com/57800f2288e4a77c708b67ad?width=1000&format=jpeg&auto=webp'
+    }, [posts.length, opacityVal])
+    
+    const hamLevel = (opacity) => {
+      return ((1.001 - +opacity) * 100).toFixed(4)
+    }
 
     return (
       <View style={styles.background}>
@@ -38,14 +38,16 @@ export default function Profile() {
           >
             {
               posts.map(post => (
+                <View style={{border: 5, borderColor: 'white', borderStyle: 'solid', width: 300, height: 300}}>
                 <ImageBackground
                     source={ {uri: post.downloadURL}}
-                    style={{width: 300 , height: 300, opacity: post.opacity}} 
+                    style={{width: 290 , height: 290}} 
                 >
-                  <Text style={{fontWeight: 'bold', color: 'white', backgroundColor: 'darkslategrey', textAlign: 'center', marginTop: 150}}>
-                    {((1-post.opacity) * 100).toFixed(3)}% Ham
+                  <Text style={{fontWeight: 'bold', color: 'white', backgroundColor: 'black', textAlign: 'center', marginTop: 150}}>
+                    {hamLevel(post.opacity)}% Ham
                   </Text>
                 </ImageBackground>
+                </View>
               ))
             }
           </View>
