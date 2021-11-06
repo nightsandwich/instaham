@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { View, StyleSheet, Text, Image, ImageBackground, Button } from 'react-native';
+import { View, StyleSheet, Text, Image, ImageBackground, Button, TouchableOpacity } from 'react-native';
 import GridImageView from 'react-native-grid-image-viewer';
 import { fetchUserPosts } from '../../redux/actions';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -15,35 +15,34 @@ export default function Profile() {
     let data = posts.map(post => post.downloadURL)
     const hamURL = 'https://i.postimg.cc/wMH6hyZY/ham1.jpg'
     
-    const [opacity, setOpacity] = useState(1);
+    const [opacity, setOpacity] = useState(0);
     // data = [...data]
     // console.log(data)
     const ham = Array(posts.length - 1).fill(hamURL)
     
     const handleLike = () => {
       console.log(opacity)
-      setOpacity(opacity - .1)
+      setOpacity(opacity + .05)
     }
 
     const HamImage = () => {
       return (
         <Image
               source={ {uri: hamURL}}
-              style={{position: 'absolute', width: 600 , height: 600, opacity: `${opacity}`}} 
+              style={{position: 'absolute', width: 300 , height: 300, opacity: `${opacity}`}} 
           />
       )
     }
     return (
-      <View >
+      <View style={styles.background}>
+        <Text style={styles.headline_text}>Profile</Text>  
+        <TouchableOpacity onPress={handleLike}>
           <Image
               source={ {uri: 'https://i.insider.com/57800f2288e4a77c708b67ad?width=1000&format=jpeg&auto=webp'}}
-              style={{width: 600 , height: 600}} 
+              style={{width: 300 , height: 300}} 
           />
-          <Button style={{position: 'absolute'}} onPress={handleLike}>
-            <MaterialCommunityIcons name="heart" size={26} 
-            />
-          </Button>
           <HamImage/>
+        </TouchableOpacity>
       </View>
         // <View style={{justifyContent: 'center',alignItems: 'center'}}>
 
