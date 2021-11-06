@@ -17,8 +17,11 @@ export default function Feed() {
     const data = posts.map(post => post.downloadURL)
     return (
         <View style={styles.background}>
-            <Text style={styles.headline_text}>Feed
-        </Text>         
+            <Text style={styles.headline_text}>Feed InstaHam 
+        </Text>
+        <Text style={styles.explore_text}>
+          Total Posts: {posts.length}
+        </Text>          
                 <GridImageView data={data} />
         </View>
     )

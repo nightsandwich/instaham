@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { View, StyleSheet, Text, Image, ImageBackground, Button, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, Image, ImageBackground, Button, TouchableOpacity, PushNotificationIOS } from 'react-native';
 import GridImageView from 'react-native-grid-image-viewer';
 import { fetchUserPosts } from '../../redux/actions';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -8,20 +8,23 @@ import { FAB } from 'react-native-elements';
 import { Icon } from 'react-native-elements';
 export default function Profile() {
     const dispatch = useDispatch();
-    const posts = useSelector(state => state.posts)
+    const [posts, user] = useSelector(state => [state.posts, state.user])
     useEffect(() => {
         dispatch(fetchUserPosts())
     }, [posts.length])
     console.log('profile posts,' ,posts)
     let data = posts.map(post => post.downloadURL)
-    const hamURL = 'https://i.postimg.cc/wMH6hyZY/ham1.jpg'
+    // const hamURL = 'https://i.postimg.cc/wMH6hyZY/ham1.jpg'
+    const hamURL = 'https://i.postimg.cc/BQbxBy2b/pngaaa-com-4797789.png'
     
     const [opacity, setOpacity] = useState(0);
+    const [opacityPhoto, setOpacityPhoto] = useState(1);
     // data = [...data]
     
     const handleLike = () => {
       console.log(opacity)
-      setOpacity(opacity + .05)
+      setOpacity(opacity + .05);
+      setOpacityPhoto(opacityPhoto - .05);
     }
 
     const HamImage = () => {
@@ -38,15 +41,15 @@ export default function Profile() {
           <Icon style={{marginLeft: '1rem'}} name="sign-out" type='font-awesome' color='white'/>
         </Text> 
         <Text style={styles.explore_text}>
-          Info
+          Username: {user.name}
         </Text> 
         <Text style={styles.explore_text}>
-          Info
+          Posts: {posts.length}
         </Text> 
         <View>
           <Image
               source={ {uri: 'https://i.insider.com/57800f2288e4a77c708b67ad?width=1000&format=jpeg&auto=webp'}}
-              style={{width: 300 , height: 300}} 
+              style={{width: 300 , height: 300, opacity: `${opacityPhoto}`}} 
           />
           <HamImage/>
           <FAB 
