@@ -60,6 +60,8 @@ export class Main extends Component {
                     }}
                     navigation={this.props.navigation}
                 />
+               
+                
             </Tab.Navigator>
         )
     }

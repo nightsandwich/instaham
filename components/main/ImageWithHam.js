@@ -55,7 +55,7 @@ export default function ImageWithHam({image, postId, postOpacity, caption}) {
                 
             />
             {
-                image !== hamURL ? (
+                image !== hamURL && postOpacity > 0 ? (
                     <View>
                     <HamImage/>
             <FAB 

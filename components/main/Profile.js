@@ -52,7 +52,7 @@ export default function Profile({navigation}) {
     return (
       <View style={styles.background}>
         <Text style={styles.headline_text}>Profile
-          <Icon style={{marginLeft: 10}} name="sign-out" type='font-awesome' color='white' onPress={logOut}/>
+          <Icon style={{margin: 10}} name="sign-out" type='font-awesome' color='white' onPress={logOut}/>
         </Text> 
         <Text style={styles.explore_text}>
           Username: {user.name}
@@ -68,7 +68,7 @@ export default function Profile({navigation}) {
               posts.map(post => (
                 <View style={{border: 5, borderColor: 'white', borderStyle: 'solid', width: 300, height: 300}}>
                 {
-                  hamLevel(post.opacity) >= 0 ?(
+                  hamLevel(post.opacity) <= 1 ?(
                     <ImageBackground
                         source={ {uri: post.downloadURL}}
                         style={{width: 290 , height: 290}} 

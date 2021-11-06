@@ -13,8 +13,8 @@ import {createLogger} from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 
-import { LogBox } from 'react-native';
-LogBox.ignoreLogs(['Setting a timer for a long period of time'])
+// import { LogBox } from 'react-native';
+// LogBox.ignoreLogs(['Setting a timer for a long period of time'])
 
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
