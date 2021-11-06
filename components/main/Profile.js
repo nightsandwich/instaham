@@ -13,8 +13,12 @@ export default function Profile() {
         dispatch(fetchUserPosts())
     }, [posts.length])
     console.log('profile posts,' ,posts)
-    let data = posts.map(post => post.downloadURL)
-    const image = 'https://i.insider.com/57800f2288e4a77c708b67ad?width=1000&format=jpeg&auto=webp'
+    // let data = posts.map(post => post.downloadURL)
+
+    let allImages = posts.map(post => (
+      ImageWithHam(post.downloadURL)
+    ))
+    // const image = 'https://i.insider.com/57800f2288e4a77c708b67ad?width=1000&format=jpeg&auto=webp'
 
     return (
       <View style={styles.background}>
@@ -28,8 +32,13 @@ export default function Profile() {
           Posts: {posts.length}
         </Text> 
         <View>
-          <ImageWithHam image={image}/>
-          <ImageWithHam image={image}/>
+          {
+            posts.map(post => (
+              <ImageWithHam key={post.id} image={post.downloadURL}  />
+            ))
+          }
+          {/* <ImageWithHam image={image}/>
+          <ImageWithHam image={image}/> */}
           {/* <GridImageView data={data} /> */}
           
         </View>
