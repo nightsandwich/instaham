@@ -9,15 +9,16 @@ import ImageWithHam from './ImageWithHam';
 export default function Profile() {
     const dispatch = useDispatch();
     const [posts, user] = useSelector(state => [state.posts, state.user])
+    
     useEffect(() => {
         dispatch(fetchUserPosts())
     }, [posts.length])
     console.log('profile posts,' ,posts)
     // let data = posts.map(post => post.downloadURL)
 
-    let allImages = posts.map(post => (
-      ImageWithHam(post.downloadURL)
-    ))
+    // let allImages = posts.map(post => (
+    //   ImageWithHam(post.downloadURL)
+    // ))
     // const image = 'https://i.insider.com/57800f2288e4a77c708b67ad?width=1000&format=jpeg&auto=webp'
 
     return (
