@@ -6,7 +6,7 @@ export const postsReducer = (state = [], action) => {
         case FETCH_USER_POSTS:
             return action.posts
         case EDIT_OPACITY_POST_USER:
-            return state.filter(post => post.id === action.post.id ? action.post : post)
+            return state.filter(post => post.id === action.userPost.id ? action.userPost : post)
         default:
             return state
     }

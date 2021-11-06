@@ -4,6 +4,7 @@ import { USER_STATE_CHANGE } from "../constants";
 import { FETCH_USER_POSTS } from "../constants";
 import { FETCH_ALL_POSTS } from "../constants";
 import { EDIT_OPACITY_POST } from "../constants";
+import { EDIT_OPACITY_POST_USER } from "../constants";
 
 export function fetchUser(){
     return( async (dispatch) => {
@@ -78,13 +79,21 @@ export function fetchUserPosts(){
 
 export function editOpacityPost(postId, newOpacity){    
     return( async (dispatch) => {
+        const auth = getAuth();
         const db = getFirestore();
+        const userId = auth.currentUser.uid;
         const docRef = doc(db, 'posts', postId)
         await setDoc(docRef, { opacity: +newOpacity }, { merge: true });
         let post = await getDoc(docRef);
     console.log('POST  ', post)
         post = post.data();
         post.id = postId;
+        const userDocRef = doc(collection(db, 'posts'), userId, 'userPosts', postId);
+        await setDoc(userDocRef, { opacity: +newOpacity }, { merge: true });
+        let userPost =await getDoc(userDocRef);
+        userPost = userPost.data();
+        userPost.id = postId;
         dispatch({ type: EDIT_OPACITY_POST, post })
+        dispatch({ type: EDIT_OPACITY_POST_USER, userPost })
     })
 }
