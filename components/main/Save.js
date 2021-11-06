@@ -36,11 +36,11 @@ export default function Save(props) {
             // const userCollectionRef = collection(db, "users")
             const userPostRef = doc(collection(db, 'posts'), auth.currentUser.uid, 'userPosts', postId)
             await setDoc(userPostRef, {
-                downloadURL, caption, created: new Date()
+                downloadURL, caption, created: new Date(), opacity: 1
             })
             const postRef = doc(db, 'posts', postId);
             await setDoc(postRef, {
-                 downloadURL, caption, created: new Date()
+                 downloadURL, caption, created: new Date(), opacity: 1
             }) 
         }
         await savePostData();

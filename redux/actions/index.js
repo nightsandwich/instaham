@@ -1,5 +1,5 @@
 import { getAuth } from "firebase/auth";
-import { doc, getDoc, getFirestore, getDocs, collection } from "firebase/firestore"; 
+import { doc, getDoc, getFirestore, getDocs, collection, setDoc } from "firebase/firestore"; 
 import { USER_STATE_CHANGE } from "../constants";
 import { FETCH_USER_POSTS } from "../constants";
 import { FETCH_ALL_POSTS } from "../constants";
@@ -24,11 +24,18 @@ export function fetchAllPosts(){
         const db = getFirestore();
         const querySnapshot = await getDocs(collection(db, `posts`));
         let posts = [];
-        querySnapshot.forEach((doc) => {    
+        querySnapshot.forEach((doc) => {
+            let postId = doc.id;
             let post = doc.data();
-            // post.id = postId;
+            post.id = postId;
             posts.push(post)
         });
+        // posts.forEach(async(post) => {
+
+        // const docRef = doc(db, 'posts', post.id);
+        // await setDoc(docRef, { opacity: 1 }, { merge: true });
+        // console.log('added opacity')
+        // })
 console.log('fetchallposts     ', posts)
         dispatch({ type: FETCH_ALL_POSTS, posts})
 
@@ -49,7 +56,7 @@ export function fetchUserPosts(){
         const userId = auth.currentUser.uid;
         const querySnapshot = await getDocs(collection(db, `posts/${userId}/userPosts`));
         let posts = [];
-        querySnapshot.forEach((doc) => {
+        querySnapshot.forEach(async(doc) => {
             if(doc.id){
                 let postId = doc.id;
                 let post = doc.data();
