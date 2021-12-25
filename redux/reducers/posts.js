@@ -1,14 +1,10 @@
-import { FETCH_USER_POSTS } from "../constants"
-import { EDIT_OPACITY_POST_USER } from "../constants"
+import { USER_STATE_CHANGE } from "../constants"
 
-export const postsReducer = (state = [], action) => {
+export const userReducer = (state = null, action) => {
     switch(action.type){
-        case FETCH_USER_POSTS:
-            return action.posts
-        case EDIT_OPACITY_POST_USER:
-            return state.filter(post => post.id === action.userPost.id ? action.userPost : post)
+        case USER_STATE_CHANGE:
+            return action.user
         default:
             return state
     }
 }
-

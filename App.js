@@ -13,8 +13,8 @@ import {createLogger} from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 
-// import { LogBox } from 'react-native';
-// LogBox.ignoreLogs(['Setting a timer for a long period of time'])
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Setting a timer for a long period of time'])
 
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
@@ -45,6 +45,7 @@ import LoginScreen from './components/auth/Login';
 import MainScreen from './components/Main';
 import AddScreen from './components/main/Add';
 import SaveScreen from './components/main/Save';
+import SinglePostScreen from './components/main/SinglePost';
 
 const Stack = createStackNavigator();
 const auth = getAuth();
@@ -103,6 +104,7 @@ export class App extends Component {
               <Stack.Screen name="Main" component={MainScreen} options={{ headerShown: false }} navigation={this.props.navigation}/>
               <Stack.Screen name="Add" component={AddScreen} navigation={this.props.navigation} />
               <Stack.Screen name="Save" component={SaveScreen} navigation={this.props.navigation} />
+              <Stack.Screen name="SinglePost" component={SinglePostScreen} options={{ headerShown: false }} />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>
