@@ -1,8 +1,10 @@
 # Instaham
 
-Instaham is a concept for a "bizarro" Instagram clone that is intended to be a silly experiment regarding influencer/"Likes" culture. Instaham allows users to post photos from their accounts, but each "Like" it receives brings it closer to becoming an image of a cartoon ham. After it goes full ham, it could leave the user's account but persist in the Instaham feed, and there would be no record of someone's popularity via hams. (This idea wasn't implemented in the app.) I wonder if there would be any interest in using an app where receiving no "Likes" meant that a) users liked the post enough to try to preserve it by not "Liking" it or b) no one liked it or c) there is no interest in using this app.
+Instaham is a concept for a "bizarro" Instagram clone that is intended to be a silly experiment regarding influencer/"Likes" culture. Instaham allows users to post photos from their accounts, but each "Like" received brings the photo closer to becoming an image of a cartoon ham. 
 
-I had about one week to make this as a personal project while at Fullstack Academy, and it was my first and only experience using React Native and Firestore (and had started learning JavaScript and ReactJS/Redux a few months before), so the app is very incomplete. I had fun with the idea and experimenting with totally new libraries and hope to one day return to it with some new skills and ideas.
+<!-- After it goes full ham, it could leave the user's account but persist in the Instaham feed, and there would be no record of someone's popularity via hams. (This idea wasn't implemented in the app.) I wonder if there would be any interest in using an app where receiving no "Likes" meant that a) users liked the post enough to try to preserve it by not "Liking" it or b) no one liked it or c) there is no interest in using this app. -->
+
+I had about one week to make this project while at Fullstack Academy. It was my first and only experience using React Native and Firestore (and had started learning JavaScript and ReactJS/Redux a few months before), so the app is incomplete. I had lots of fun with the idea and experimenting with totally new libraries and hope to one day return to it with some new skills and ideas.
 
 ## Screenshots
 
